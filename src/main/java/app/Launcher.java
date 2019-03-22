@@ -11,7 +11,7 @@ public class Launcher {
 
     public static void main(String[] args){
 
-        Server server = new Server(9010);
+        Server server = new Server(9015);
 
         ServletContextHandler ctx = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
 
@@ -20,6 +20,7 @@ public class Launcher {
 
         ServletHolder serHol = ctx.addServlet(ServletContainer.class, "/*");
         serHol.setInitParameter("jersey.config.server.provider.packages","controller");
+        serHol.setInitParameter("javax.ws.rs.Application","model.CustomApplication");
 
         try{
 

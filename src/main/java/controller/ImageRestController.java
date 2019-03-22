@@ -31,19 +31,9 @@ public class ImageRestController {
 
         ImageThumbnail resizeImage = new ImageThumbnail(image);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(convertToBufferedImage(resizeImage.getThumbnail()),"png", outputStream);
+        ImageIO.write(resizeImage.getThumbnail(),"png", outputStream);
         return Response
                 .ok(outputStream.toByteArray())
                 .build();
-    }
-
-    public RenderedImage convertToBufferedImage(Image image) {
-        BufferedImage newImage = new BufferedImage(
-                image.getWidth(null), image.getHeight(null),
-                BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = newImage.createGraphics();
-        g.drawImage(image, 0, 0, null);
-        g.dispose();
-        return newImage;
     }
 }
