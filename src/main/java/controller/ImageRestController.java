@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @Path("image")
 public class ImageRestController {
@@ -27,7 +28,7 @@ public class ImageRestController {
     @GET
     @Path("/thumbnail/{image}")
     @Produces({"image/png", "image/jpg"})
-    public Response getThumbnail(@PathParam("image") String image) throws IOException {
+    public Response getThumbnail(@PathParam("image") String image) throws IOException, URISyntaxException {
 
         ImageThumbnail resizeImage = new ImageThumbnail(image);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
